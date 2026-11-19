@@ -1,0 +1,12 @@
+----ファイル詳細----
+index.php	強化可能なアイテム一覧
+material.php	ベースアイテムの選択
+material_select.php	素材アイテムの選択
+result.php	限界突破の実行・結果表示
+
+----コマンド----
+docker compose exec mysql bash	MySQLコンテナ内のBashに入る
+docker compose exec mysql mysql -uroot -p	MySQLに直接接続する
+exit;	MySQLから抜ける
+cat /root/sql/create_table_sql	SQLファイルの中身を確認する
+ls -la /root/sql/	SQLフォルダ内のファイルを確認する
