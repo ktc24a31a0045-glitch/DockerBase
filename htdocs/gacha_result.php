@@ -12,6 +12,7 @@ try {
         SELECT
             im.item_id,
             im.item_name,
+            im.image_path,
             gim.weight
         FROM gacha_item_master AS gim
         JOIN item_master AS im
@@ -122,14 +123,44 @@ try {
 
     <h2>獲得アイテム</h2>
 
-    <ol>
-        <?php foreach ($results as $item): ?>
-            <li>
-                <?= htmlspecialchars($item['item_name'], ENT_QUOTES, 'UTF-8') ?>
-            </li>
-        <?php endforeach; ?>
-    </ol>
+    <style>
+    .result-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 500px;
+        padding: 10px;
+        border: 2px solid red;
+    }
 
-    <a href="gacha.php">もう一度ガチャを回す</a>
+    .result-item {
+        text-align: center;
+    }
+
+    .result-item img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+</style>
+
+<div class="result-list">
+    <?php foreach ($results as $item): ?>
+        <div class="result-item">
+            <p>
+                <?= htmlspecialchars($item['item_id'], ENT_QUOTES, 'UTF-8') ?>
+                ：
+                <?= htmlspecialchars($item['item_name'], ENT_QUOTES, 'UTF-8') ?>
+            </p>
+
+            <img
+                src="<?= htmlspecialchars($item['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                alt="<?= htmlspecialchars($item['item_name'], ENT_QUOTES, 'UTF-8') ?>"
+            >
+        </div>
+    <?php endforeach; ?>
+</div>
+
+    <a href="gacha_form.html">もう一度ガチャを回す</a>
 </body>
 </html>
